@@ -1,6 +1,5 @@
 -- ELLY'S TABLES (Hospital, Ward, Department, Doctor, Patient)
 
-
 /*
 ================
   CREATE TABLE
