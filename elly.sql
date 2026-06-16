@@ -71,10 +71,16 @@ INSERT INTO Department VALUES ('D002', 'H001', 'Pediatrics', 'DOC003');
 INSERT INTO Department VALUES ('D003', 'H002', 'Emergency', 'DOC004');
 
 -- DOCTOR
-INSERT INTO Doctor VALUES ('DOC001', 'D001', 'Dr. Ahmad bin Abdullah', '012-3456789', 'ahmad@hospital.com');
-INSERT INTO Doctor VALUES ('DOC002', 'D001', 'Dr. Siti binti Ramli', '012-9876543', 'siti@hospital.com');
-INSERT INTO Doctor VALUES ('DOC003', 'D002', 'Dr. Tan Wei Ming', '013-4567890', 'tan@hospital.com');
-INSERT INTO Doctor VALUES ('DOC004', 'D003', 'Dr. Ravi a/l Sundram', '014-5678901', 'ravi@hospital.com');
+INSERT INTO Doctor VALUES ('DOC001', 'D001', 'Dr. Zhao Yufan', '012-3456789', 'zhaoyufan@hospital.com');
+INSERT INTO Doctor VALUES ('DOC002', 'D001', 'Dr. Chen Feiyu', '012-9876543', 'chenfeiyu@hospital.com');
+INSERT INTO Doctor VALUES ('DOC003', 'D002', 'Dr. Xiao Nai', '013-4567890', 'xiaonai@hospital.com');
+INSERT INTO Doctor VALUES ('DOC004', 'D003', 'Dr. Sui Yuanqing', '014-5678901', 'suiyuanqing@hospital.com');
+INSERT INTO Doctor VALUES ('DOC005', 'D001', 'Dr. Gu Weiyi', '019-3456789', 'guweiyi@hospital.com');
+INSERT INTO Doctor VALUES ('DOC006', 'D005', 'Dr. Duan Jiaxu', '016-7890123', 'duanjiaxu@hospital.com');
+INSERT INTO Doctor VALUES ('DOC007', 'D003', 'Dr. Zi Qi', '017-8901234', 'ziqi@hospital.com');
+INSERT INTO Doctor VALUES ('DOC008', 'D001', 'Dr. Xiao Heng', '018-1234567', 'xiaoheng@hospital.com');
+INSERT INTO Doctor VALUES ('DOC009', 'D002', 'Dr. Ji Bozai', '018-2345678', 'jibozai@hospital.com');
+INSERT INTO Doctor VALUES ('DOC010', 'D003', 'Dr. Daoming Si', '018-3456789', 'daomingsi@hospital.com');
 
 -- PATIENT
 INSERT INTO Patient VALUES ('P001', 'John Bin Abdullah', '1985-05-15', 'M', '011-1234567', 'W001', '2026-06-10');
