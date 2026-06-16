@@ -27,7 +27,7 @@ CREATE TABLE Department (
     DeptID VARCHAR(10) PRIMARY KEY,
     HospitalID VARCHAR(10) NOT NULL REFERENCES Hospital(HospitalID),
     DeptName VARCHAR(100) NOT NULL,
-    HeadDoctorID VARCHAR(10)
+    HeadDoctorID VARCHAR(10) REFERENCES Doctor(DoctorID)
 );
 
 -- DOCTOR
