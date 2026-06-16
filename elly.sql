@@ -22,12 +22,11 @@ CREATE TABLE Ward (
     HospitalID VARCHAR(10) NOT NULL REFERENCES Hospital(HospitalID)
 );
 
--- DEPARTMENT (HeadDoctorID -> buat table doctor dulu then ALTER)
+-- DEPARTMENT (NO HeadDoctorID yet)
 CREATE TABLE Department (
     DeptID VARCHAR(10) PRIMARY KEY,
     HospitalID VARCHAR(10) NOT NULL REFERENCES Hospital(HospitalID),
-    DeptName VARCHAR(100) NOT NULL,
-    HeadDoctorID VARCHAR(10) REFERENCES Doctor(DoctorID)
+    DeptName VARCHAR(100) NOT NULL
 );
 
 -- DOCTOR
@@ -50,11 +49,13 @@ CREATE TABLE Patient (
     AdmissionDate DATE
 );
 
-/*
-==========================
-  INSERT DATA INTO TABLE
-==========================
-*/
+-- ADD HeadDoctorID to Department (NOW Doctor exists)
+ALTER TABLE Department ADD COLUMN HeadDoctorID VARCHAR(10) REFERENCES Doctor(DoctorID);
+
+
+-- ============================================
+-- INSERT DATA
+-- ============================================
 
 -- HOSPITAL
 INSERT INTO Hospital VALUES ('H001', 'MMU Medical Center', 'Jalan Multimedia, Cyberjaya', '03-83125000');
@@ -65,11 +66,12 @@ INSERT INTO Ward VALUES ('W001', 'General Ward', 20, 'H001');
 INSERT INTO Ward VALUES ('W002', 'ICU', 10, 'H001');
 INSERT INTO Ward VALUES ('W003', 'Pediatric Ward', 15, 'H002');
 
--- DEPARTMENT
-INSERT INTO Department VALUES ('D001', 'H001', 'Cardiology', 'DOC001');
-INSERT INTO Department VALUES ('D002', 'H001', 'Pediatrics', 'DOC003');
-INSERT INTO Department VALUES ('D003', 'H002', 'Emergency', 'DOC004');
-INSERT INTO Department VALUES ('D005', 'H001', 'Neurology', 'DOC006');
+-- DEPARTMENT (NO HeadDoctorID)
+INSERT INTO Department (DeptID, HospitalID, DeptName) VALUES 
+    ('D001', 'H001', 'Cardiology'),
+    ('D002', 'H001', 'Pediatrics'),
+    ('D003', 'H002', 'Emergency'),
+    ('D005', 'H001', 'Neurology');
 
 -- DOCTOR
 INSERT INTO Doctor VALUES ('DOC001', 'D003', 'Dr. Zhao Yufan', '012-3456789', 'zhaoyufan@hospital.com');
@@ -82,6 +84,12 @@ INSERT INTO Doctor VALUES ('DOC007', 'D005', 'Dr. Sang Yan', '017-8901234', 'san
 INSERT INTO Doctor VALUES ('DOC008', 'D001', 'Dr. Xiao Heng', '018-1234567', 'xiaoheng@hospital.com');
 INSERT INTO Doctor VALUES ('DOC009', 'D002', 'Dr. Ji Bozai', '018-2345678', 'jibozai@hospital.com');
 INSERT INTO Doctor VALUES ('DOC010', 'D003', 'Dr. Daoming Si', '018-3456789', 'daomingsi@hospital.com');
+
+-- UPDATE Department with HeadDoctorID
+UPDATE Department SET HeadDoctorID = 'DOC001' WHERE DeptID = 'D001';
+UPDATE Department SET HeadDoctorID = 'DOC003' WHERE DeptID = 'D002';
+UPDATE Department SET HeadDoctorID = 'DOC004' WHERE DeptID = 'D003';
+UPDATE Department SET HeadDoctorID = 'DOC006' WHERE DeptID = 'D005';
 
 -- PATIENT
 INSERT INTO Patient VALUES ('P001', 'Portgas D. Ace', '1985-05-15', 'M', '011-1234567', 'W001', '2026-06-10');
@@ -104,3 +112,17 @@ INSERT INTO Patient VALUES ('P017', 'Perona', '1997-09-29', 'F', '011-7890123', 
 INSERT INTO Patient VALUES ('P018', 'Kaido', '1975-05-01', 'M', '011-8901234', 'W002', '2026-06-27');
 INSERT INTO Patient VALUES ('P019', 'Borsalino Kizaru', '1988-11-23', 'M', '011-9012345', 'W003', '2026-06-28');
 INSERT INTO Patient VALUES ('P020', 'Nerona Imu', '1970-12-25', 'M', '011-0123459', 'W003', '2026-06-29');
+
+-- ============================================
+-- VERIFICATION
+-- ============================================
+
+SELECT 'Hospital' AS Table_Name, COUNT(*) AS Count FROM Hospital
+UNION ALL
+SELECT 'Ward', COUNT(*) FROM Ward
+UNION ALL
+SELECT 'Department', COUNT(*) FROM Department
+UNION ALL
+SELECT 'Doctor', COUNT(*) FROM Doctor
+UNION ALL
+SELECT 'Patient', COUNT(*) FROM Patient;
